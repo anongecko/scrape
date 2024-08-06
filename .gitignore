@@ -1,13 +1,6 @@
-#virtual environment
 venv/
-
-# Ignore Python cache files
 __pycache__/
-
-# Ignore all log files
 *.log
-
 code_data.db
-
 proxies.txt
 .vscode

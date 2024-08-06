@@ -177,14 +177,24 @@ class WebsiteSpider(scrapy.Spider):
         self.pbar = tqdm(total=self.total_links, desc=f"Scraping Website")
         self.base_url = self.start_urls[0]
         self.sem = asyncio.Semaphore(CONCURRENT_REQUESTS)
+        self.proxies = self.load_proxies()
 
     def load_start_urls(self):
         with open('links_to_scrape.txt', 'r') as f:
             self.start_urls = [line.strip() for line in f]
 
+    def load_proxies(self):
+        proxies = []
+        try:
+            with open('proxies.txt', 'r') as f:
+                proxies = f.read().splitlines()
+        except FileNotFoundError:
+            logging.warning("proxies.txt not found. Using default proxies.")
+            proxies = ['http://127.0.0.1:8080', 'socks5://127.0.0.1:9050']  # Replace with your default proxies
+        return proxies
+
     def get_random_proxy(self):
-        with open('proxies.txt', 'r') as f:
-            return choice(f.read().splitlines())
+        return choice(self.proxies)
 
     async def start_requests(self):
         async with ClientSession() as session:
