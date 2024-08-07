@@ -30,6 +30,11 @@ import aiosqlite
 from memory_profiler import profile
 import psutil
 
+chrome_options = Options()
+chrome_options.binary_location = "/Users/bytes/Downloads/chrome-mac/Chromium-114.app"  # Adjust path as needed
+service = Service(executable_path="/Users/bytes/Documents/chromedriver_mac64/chromedriver")
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
 # Set up logging
 logging.basicConfig(
     filename='scraper.log',
@@ -354,7 +359,7 @@ class WebsiteSpider(scrapy.Spider):
             return
 
         self.visited_urls.add(response.url)
-        g = Github('your_github_access_token')
+        g = Github('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')
         
         try:
             repo = await g.get_repo(response.url.split('/')[-1])

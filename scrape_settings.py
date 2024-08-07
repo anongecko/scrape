@@ -36,7 +36,7 @@ USER_AGENTS = [
 ]
 
 # Concurrency and Delay
-CONCURRENT_REQUESTS = 1  # Number of concurrent requests (adjust based on website policies)
+CONCURRENT_REQUESTS = 3  # Number of concurrent requests (adjust based on website policies)
 DOWNLOAD_DELAY = 10  # Delay between requests (in seconds)
 
 # Robots.txt
@@ -44,4 +44,4 @@ ROBOTSTXT_OBEY = False  # Set to False if you want to ignore robots.txt rules (u
 
 # Resource Limits (in MB and percentage)
 MEMORY_LIMIT = 2048  # 2 GB
-CPU_LIMIT = 30  # 30% CPU usage
+CPU_LIMIT = 70  # 30% CPU usage
